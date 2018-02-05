@@ -40,7 +40,7 @@ public class engine
             case "2":
                System.out.println("Enter keyword.");
                String key = searcher.nextLine();
-               search( key , 1 );
+               searchQuote( key );
                break;
             
             case "3":
@@ -71,10 +71,40 @@ public class engine
      
    }
    
-   public static void search( String keyword , int mode)
+   public static void searchQuote( String keyword )
    {
       QuoteList results = quoteList.search( keyword , 1 );
-      System.out.println(results.quoteArray.size());
+      System.out.println("Results ("+results.quoteArray.size()+"):");
+      for ( int i = 0 ; i < results.quoteArray.size() ; i++ )
+      {
+         Quote quote1 = quoteList.quoteArray.get(i);
+         System.out.println( "  "+quote1.getQuoteText() );
+         System.out.println( "  -"+quote1.getAuthor() + "\n" );
+      }
+   }
+   
+   public static void searchAuthor( String keyword )
+   {
+      QuoteList results = quoteList.search( keyword , 0 );
+      System.out.println("Results ("+results.quoteArray.size()+"):");
+      for ( int i = 0 ; i < results.quoteArray.size() ; i++ )
+      {
+         Quote quote1 = quoteList.quoteArray.get(i);
+         System.out.println( "  "+quote1.getQuoteText() );
+         System.out.println( "  -"+quote1.getAuthor() + "\n" );
+      }
+   }
+   
+   public static void searchBoth( String keyword )
+   {
+      QuoteList results = quoteList.search( keyword , 2 );
+      System.out.println("Results ("+results.quoteArray.size()+"):");
+      for ( int i = 0 ; i < results.quoteArray.size() ; i++ )
+      {
+         Quote quote1 = quoteList.quoteArray.get(i);
+         System.out.println( "  "+quote1.getQuoteText() );
+         System.out.println( "  -"+quote1.getAuthor() + "\n" );
+      }
    }
    
    public static void printRandomQuote()

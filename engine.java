@@ -45,17 +45,17 @@ public class engine
          // runs desired use case based on user input
          switch(tracker) {
             case "2":
-               System.out.println("Enter keyword.");
+               System.out.println("Enter search query.");
                key = searcher.nextLine();
                searchQuote( key );
                break;
             case "3":
-               System.out.println("Enter keyword.");
+               System.out.println("Enter search query.");
                key = searcher.nextLine();
                searchAuthor( key );
                break;
             case "4":
-               System.out.println("Enter keyword.");
+               System.out.println("Enter search query.");
                key = searcher.nextLine();
                searchBoth( key );
                break;

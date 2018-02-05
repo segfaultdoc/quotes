@@ -31,6 +31,16 @@ public class engine
       while( !tracker.equalsIgnoreCase("exit") ){
          
          printRandomQuote();
+         
+          // user menu
+         System.out.println("\nPress 1 to get another random quote.");
+         System.out.println("Press 2 to search by a keyword in a quote.");
+         System.out.println("Press 3 to search by an author.");
+         System.out.println("Press 4 to search by both.");
+         System.out.println("Enter 'exit' to quit the program.");
+         String inn = in.nextLine();
+         tracker = inn;
+         
          String key;
          // runs desired use case based on user input
          switch(tracker) {
@@ -50,19 +60,6 @@ public class engine
                searchBoth( key );
                break;
          }
-         
-         
-         
-         // user menu
-         System.out.println("\nPress 1 to get another random quote.");
-         System.out.println("Press 2 to search by a keyword in a quote.");
-         System.out.println("Press 3 to search by an author.");
-         System.out.println("Press 4 to search by both.");
-         System.out.println("Enter 'exit' to quit the program.");
-         String inn = in.nextLine();
-         tracker = inn;
-         
-         
          
       }
       

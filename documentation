@@ -1,0 +1,9 @@
+- Added a new class called engine.java where we will run the main functions of the program
+ + asking user to enter a number for their desired use case
+ + get user input for the search keywords
+
+- changed the array "quoteArray" in quoteList.java to be public instead of private so we could use it in the engine.java file
+
+- the quoteserver.java file was deleted since it was of no use and brought compiling errors since it was missing the servlet library
+
+

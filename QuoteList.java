@@ -1,4 +1,4 @@
-package quotes;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class QuoteList
 {
-   private ArrayList<Quote> quoteArray;
+   public ArrayList<Quote> quoteArray;
 
    // These constants are used in the servlet
    /* package */ static final int SearchAuthorVal = 0;
@@ -51,6 +51,10 @@ public class QuoteList
     * @param searchString String input for search
     * @param mode search in the author, quotr, or both
     * @return QuoteList containing the search results (may be multiple quotes)
+    *
+    * static final int SearchAuthorVal = 0;
+      static final int SearchTextVal   = 1;
+      static final int SearchBothVal   = 2;
     */
    public QuoteList search (String searchString, int mode)
    {

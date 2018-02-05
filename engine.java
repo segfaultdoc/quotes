@@ -20,6 +20,8 @@ public class engine
       
       // keeps track of user input, if user enters 'exit' the while loop below will stop
       String tracker = "a";
+      
+      // parses the xml file into the quotelist
       Scanner in = new Scanner(System.in);
       Scanner searcher = new Scanner(System.in);
       QuoteSaxParser qParser = new QuoteSaxParser (quoteFileName);
@@ -28,35 +30,30 @@ public class engine
       // loop runs until user enters 'exit'
       while( !tracker.equalsIgnoreCase("exit") ){
          
-         
+         printRandomQuote();
+         String key;
+         // runs desired use case based on user input
          switch(tracker) {
-            
-            case "a":
-               printRandomQuote();
-               break;
-            case "1":
-               printRandomQuote();
-               break;
             case "2":
                System.out.println("Enter keyword.");
-               String key = searcher.nextLine();
+               key = searcher.nextLine();
                searchQuote( key );
                break;
             case "3":
                System.out.println("Enter keyword.");
-               String key = searcher.nextLine();
+               key = searcher.nextLine();
                searchAuthor( key );
                break;
             case "4":
                System.out.println("Enter keyword.");
-               String key = searcher.nextLine();
+               key = searcher.nextLine();
                searchBoth( key );
                break;
          }
          
          
          
-         
+         // user menu
          System.out.println("\nPress 1 to get another random quote.");
          System.out.println("Press 2 to search by a keyword in a quote.");
          System.out.println("Press 3 to search by an author.");
@@ -74,7 +71,10 @@ public class engine
    
    public static void searchQuote( String keyword )
    {
+      // retrieve list of results based on search
       QuoteList results = quoteList.search( keyword , 1 );
+      
+      // output the results
       System.out.println("Results ("+results.quoteArray.size()+"):");
       for ( int i = 0 ; i < results.quoteArray.size() ; i++ )
       {

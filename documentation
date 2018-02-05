@@ -1,6 +1,7 @@
 - Added a new class called engine.java where we will run the main functions of the program
  + asking user to enter a number for their desired use case
  + get user input for the search keywords
+ + kept the xml parser to parse the xml file and put in all the quotes into the quoteList variable
 
 - changed the array "quoteArray" in quoteList.java to be public instead of private so we could use it in the engine.java file
 

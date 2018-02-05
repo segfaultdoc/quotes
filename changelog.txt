@@ -7,4 +7,5 @@
 
 - the quoteserver.java file was deleted since it was of no use and brought compiling errors since it was missing the servlet library
 
-
+Changed what was being printed to the user from "Enter keyword" to "Enter search query".
+Also added a README file for instructions on how to compile and run locally.

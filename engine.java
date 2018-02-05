@@ -42,15 +42,16 @@ public class engine
                String key = searcher.nextLine();
                searchQuote( key );
                break;
-            
             case "3":
-               
+               System.out.println("Enter keyword.");
+               String key = searcher.nextLine();
+               searchAuthor( key );
                break;
-            
             case "4":
-               
+               System.out.println("Enter keyword.");
+               String key = searcher.nextLine();
+               searchBoth( key );
                break;
-            
          }
          
          

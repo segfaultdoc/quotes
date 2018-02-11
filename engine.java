@@ -1,6 +1,7 @@
 import java.util.Scanner; 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.*;
 
 
 
@@ -37,28 +38,47 @@ public class engine
          System.out.println("Press 2 to search by a keyword in a quote.");
          System.out.println("Press 3 to search by an author.");
          System.out.println("Press 4 to search by both.");
+         System.out.println("Press 5 to add a quote.");
          System.out.println("Enter 'exit' to quit the program.");
          String inn = in.nextLine();
          tracker = inn;
          
+         // user input from possible menu options
          String key;
+         
          // runs desired use case based on user input
          switch(tracker) {
+            
             case "2":
                System.out.println("Enter search query.");
                key = searcher.nextLine();
                searchQuote( key );
                break;
+            
             case "3":
                System.out.println("Enter search query.");
                key = searcher.nextLine();
                searchAuthor( key );
                break;
+            
             case "4":
                System.out.println("Enter search query.");
                key = searcher.nextLine();
                searchBoth( key );
                break;
+            
+            case "5":
+               System.out.println("Enter the quote.");
+               key = searcher.nextLine();
+               String newQuote = key;
+               
+               System.out.println("Enter the author.");
+               key = searcher.nextLine();
+               String newAuthor = key;
+               
+               addQuote( newQuote , newAuthor );
+               break;
+            
          }
          
       }
@@ -66,16 +86,60 @@ public class engine
      
    }
    
+   public static void addQuote( String quote , String author )
+   {
+      // create new quote
+      Quote newQuote = new Quote(author,quote);
+      // put new quote in current quote list
+      quoteList.setQuote( newQuote );
+      
+      // print the old list into a .tmp file and add the new quote to the file
+      try (BufferedReader br = new BufferedReader(new FileReader("quotes.xml"))) {
+         
+         PrintWriter pw = new PrintWriter("quotes.tmp", "UTF-8");
+         String line;
+         
+         // add old quotes to new file
+         while ((line = br.readLine()) != null) {
+            if( !line.equals("</quote-list>") )
+               pw.println(line);
+         }
+         
+         // write new quote to file
+         pw.println("   <quote>");
+         pw.println("      <quote-text>"+quote+"</quote-text>");
+         pw.println("      <author>"+author+"</author>");
+         pw.println("   </quote>");
+         
+         // close out the list
+         pw.println("</quote-list>");
+         
+         // rename the file 
+         File renamer = new File("quotes.tmp");
+         renamer.renameTo(new File("quotes.xml"));
+         
+         br.close();
+         pw.close();
+      }
+      catch(Exception e){
+         
+      }
+      
+      
+   }
+   
    public static void searchQuote( String keyword )
    {
+      
       // retrieve list of results based on search
       QuoteList results = quoteList.search( keyword , 1 );
       
       // output the results
-      System.out.println("Results ("+results.quoteArray.size()+"):");
-      for ( int i = 0 ; i < results.quoteArray.size() ; i++ )
+      System.out.println("Results ("+results.getSize()+"):");
+      
+      for ( int i = 0 ; i < results.getSize() ; i++ )
       {
-         Quote quote1 = quoteList.quoteArray.get(i);
+         Quote quote1 = quoteList.getQuote(i);
          System.out.println( "  "+quote1.getQuoteText() );
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
@@ -84,10 +148,11 @@ public class engine
    public static void searchAuthor( String keyword )
    {
       QuoteList results = quoteList.search( keyword , 0 );
-      System.out.println("Results ("+results.quoteArray.size()+"):");
-      for ( int i = 0 ; i < results.quoteArray.size() ; i++ )
+      System.out.println("Results ("+results.getSize()+"):");
+      
+      for ( int i = 0 ; i < results.getSize() ; i++ )
       {
-         Quote quote1 = quoteList.quoteArray.get(i);
+         Quote quote1 = quoteList.getQuote(i);
          System.out.println( "  "+quote1.getQuoteText() );
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
@@ -96,10 +161,11 @@ public class engine
    public static void searchBoth( String keyword )
    {
       QuoteList results = quoteList.search( keyword , 2 );
-      System.out.println("Results ("+results.quoteArray.size()+"):");
-      for ( int i = 0 ; i < results.quoteArray.size() ; i++ )
+      System.out.println("Results ("+results.getSize()+"):");
+      
+      for ( int i = 0 ; i < results.getSize() ; i++ )
       {
-         Quote quote1 = quoteList.quoteArray.get(i);
+         Quote quote1 = quoteList.getQuote(i);
          System.out.println( "  "+quote1.getQuoteText() );
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
@@ -108,6 +174,7 @@ public class engine
    public static void printRandomQuote()
    {
       quote = quoteList.getRandomQuote();
+      
       System.out.println("\nRandom quote of the day:");
       System.out.println( "  "+quote.getQuoteText() );
       System.out.println( "  -"+quote.getAuthor() );

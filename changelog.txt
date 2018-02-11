@@ -9,3 +9,7 @@
 
 Changed what was being printed to the user from "Enter keyword" to "Enter search query".
 Also added a README file for instructions on how to compile and run locally.
+
+HW2:
+
+changed quoteArray in quotelist back to private and changed code in engine.java to use the methods from quoteList.java to retrieve information about the quote list

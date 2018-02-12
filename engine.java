@@ -139,7 +139,7 @@ public class engine
       
       for ( int i = 0 ; i < results.getSize() ; i++ )
       {
-         Quote quote1 = quoteList.getQuote(i);
+         Quote quote1 = results.getQuote(i);
          System.out.println( "  "+quote1.getQuoteText() );
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
@@ -152,7 +152,7 @@ public class engine
       
       for ( int i = 0 ; i < results.getSize() ; i++ )
       {
-         Quote quote1 = quoteList.getQuote(i);
+         Quote quote1 = results.getQuote(i);
          System.out.println( "  "+quote1.getQuoteText() );
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
@@ -165,7 +165,7 @@ public class engine
       
       for ( int i = 0 ; i < results.getSize() ; i++ )
       {
-         Quote quote1 = quoteList.getQuote(i);
+         Quote quote1 = results.getQuote(i);
          System.out.println( "  "+quote1.getQuoteText() );
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }

@@ -12,4 +12,11 @@ Also added a README file for instructions on how to compile and run locally.
 
 HW2:
 
-changed quoteArray in quotelist back to private and changed code in engine.java to use the methods from quoteList.java to retrieve information about the quote list
+- changed quoteArray in quotelist back to private and changed code in engine.java to use the methods from quoteList.java to retrieve information about the quote list
+
+- added the addQuote() function in engine.java. this is the function that gets the new quote from the user and then updates the programs quote list and updates the xml file
+
+- made a change to the functions searchAuthor() , searchQuote() , and searchBoth() in engine.java
+  + the functions were printing out the wrong results do to printing out the wrong quote list within the for loop
+  + they now print out the correct results
+  

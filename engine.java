@@ -1,3 +1,14 @@
+/* 
+ * @author - Zanyar Sherwani
+ * @author - Omar Zairi
+ *
+ * This is the driver class that displays
+ * menu prompts to the user and calls other
+ * classes as helpers.
+ *
+ *
+ */
+
 import java.util.Scanner; 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +21,9 @@ public class engine
    // initializes the quotelist and stores all the quotes from xml file into quoteList variable
    static QuoteList quoteList = new QuoteList();
    static String quoteFileName = "quotes.xml";
+   // blacklist of profane words
+   static Blacklist blkList = new Blacklist(); 
    
-
    // the current quote
    static Quote quote = new Quote();
    
@@ -21,13 +33,12 @@ public class engine
       
       // keeps track of user input, if user enters 'exit' the while loop below will stop
       String tracker = "a";
-      
+       
       // parses the xml file into the quotelist
       Scanner in = new Scanner(System.in);
       Scanner searcher = new Scanner(System.in);
       QuoteSaxParser qParser = new QuoteSaxParser (quoteFileName);
       quoteList = qParser.getQuoteList();
-      
       // loop runs until user enters 'exit'
       while( !tracker.equalsIgnoreCase("exit") ){
          
@@ -39,7 +50,7 @@ public class engine
          System.out.println("Press 3 to search by an author.");
          System.out.println("Press 4 to search by both.");
          System.out.println("Press 5 to add a quote.");
-         System.out.println("Enter 'exit' to quit the program.");
+	 System.out.println("Enter 'exit' to quit the program.");
          String inn = in.nextLine();
          tracker = inn;
          
@@ -71,19 +82,45 @@ public class engine
                System.out.println("Enter the quote.");
                key = searcher.nextLine();
                String newQuote = key;
-               
+               if(blkList.containsBadWord(newQuote)){
+		System.out.println("Sorry, innappropriate language will not be added to our database!");
+	       }
+	       else{ 
                System.out.println("Enter the author.");
                key = searcher.nextLine();
                String newAuthor = key;
-               
+	       if(blkList.containsBadWord(newAuthor)){
+		System.out.println("Sorry, innappropriate language will not be added to our database!");
+	
+	       }
+	       else{
                addQuote( newQuote , newAuthor );
+	       }
+	       }
                break;
+
+	  
+
             
          }
          
       }
       
      
+   }
+
+   /*
+    * @author - Zanyar Sherwani
+    *
+    * This function uses a non-optimal
+    * way to check for profanity within 
+    * any string passed in
+    *
+    */
+   public static boolean checkForProfanity(String str){
+	
+	return true;
+
    }
    
    public static void addQuote( String quote , String author )

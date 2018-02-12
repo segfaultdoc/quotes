@@ -19,4 +19,18 @@ HW2:
 - made a change to the functions searchAuthor() , searchQuote() , and searchBoth() in engine.java
   + the functions were printing out the wrong results do to printing out the wrong quote list within the for loop
   + they now print out the correct results
-  
+
+- Important Note!
+	After a quote is added, during each subsequent run of the program, the 
+	same added quote is displayed as the "Random Quote of the day"; and 
+	this is only on the first iteration of each run. However, when another
+	quote is added, the samething happens but not for the newly added 
+	quote. Instead an arbitrary quote is displayed during each first 
+	iteration of the running program, each time the displayed quote is the
+	same as the last.
+
+- Data Integrity
+	Added a class called black list which has a hardcoded arraylist of 
+	innappropriate words that are checked when new quotes and authors are
+	added. Created a class called Profanity in which we will further scale
+	this functionality out in the coming weeks..

@@ -21,6 +21,7 @@ public class engine
    // initializes the quotelist and stores all the quotes from xml file into quoteList variable
    static QuoteList quoteList = new QuoteList();
    static String quoteFileName = "quotes.xml";
+   
    // blacklist of profane words
    static Blacklist blkList = new Blacklist(); 
    
@@ -39,6 +40,7 @@ public class engine
       Scanner searcher = new Scanner(System.in);
       QuoteSaxParser qParser = new QuoteSaxParser (quoteFileName);
       quoteList = qParser.getQuoteList();
+      
       // loop runs until user enters 'exit'
       while( !tracker.equalsIgnoreCase("exit") ){
          
@@ -50,7 +52,8 @@ public class engine
          System.out.println("Press 3 to search by an author.");
          System.out.println("Press 4 to search by both.");
          System.out.println("Press 5 to add a quote.");
-	 System.out.println("Enter 'exit' to quit the program.");
+         System.out.println("Enter 'exit' to quit the program.");
+         
          String inn = in.nextLine();
          tracker = inn;
          
@@ -82,26 +85,27 @@ public class engine
                System.out.println("Enter the quote.");
                key = searcher.nextLine();
                String newQuote = key;
+               
                if(blkList.containsBadWord(newQuote)){
-		System.out.println("Sorry, innappropriate language will not be added to our database!");
-	       }
-	       else{ 
-               System.out.println("Enter the author.");
-               key = searcher.nextLine();
-               String newAuthor = key;
-	       if(blkList.containsBadWord(newAuthor)){
-		System.out.println("Sorry, innappropriate language will not be added to our database!");
-	
-	       }
-	       else{
-               addQuote( newQuote , newAuthor );
-	       }
-	       }
+                  
+                  System.out.println("Sorry, innappropriate language will not be added to our database!");
+                  
+               }
+               else{
+                  
+                    System.out.println("Enter the author.");
+                    key = searcher.nextLine();
+                    String newAuthor = key;
+                    
+                    if(blkList.containsBadWord(newAuthor))
+                       System.out.println("Sorry, innappropriate language will not be added to our database!");
+        
+                     else
+                          addQuote( newQuote , newAuthor );
+	       
+               }
                break;
 
-	  
-
-            
          }
          
       }
@@ -123,6 +127,17 @@ public class engine
 
    }
    
+   
+   /*
+    * @author : Omar Zairi
+    * @param text of the quote
+    * @param author of the quote
+    *
+    * Gets a quote text and author name from the user
+    * Adds the quote to the current quote list array
+    * and adds it to the xml file
+    * 
+    */
    public static void addQuote( String quote , String author )
    {
       // create new quote
@@ -159,10 +174,9 @@ public class engine
          pw.close();
       }
       catch(Exception e){
-         
+         System.out.println("Error with file.");
       }
-      
-      
+
    }
    
    public static void searchQuote( String keyword )

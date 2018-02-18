@@ -1,1 +1,8 @@
 fuck trump
+
+
+Question 2
+
+ a) I believe the problem is reachability. The test isn't actually checking if the duplicate value was removed. It should be checking the 3rd value in the list, to see if second occurrence of "cake" was removed.
+
+ b) assertTrue ("removeDuplicates method" , words.getIndex(3).equals("pie"));

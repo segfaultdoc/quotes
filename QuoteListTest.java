@@ -14,10 +14,11 @@ public class QuoteListTest {
         QuoteSaxParser qParser = new QuoteSaxParser ("quotes.xml");
         quoteList = qParser.getQuoteList();
     }
-    
-    
-    // Tests
-    
+
+    /*
+     * Tests for QuoteList.java
+     *
+     */
     @Test
     public void testSize(){
         initializeList();

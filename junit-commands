@@ -1,0 +1,8 @@
+
+
+# to compile the classes with junit library and hamcrest library
+javac -cp junit-4.12.jar:hamcrest-core-1.3.jar *.java
+
+# to run the actual test , name of driver class at the end
+java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore QuoteListTest
+

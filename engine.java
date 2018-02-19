@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.*;
 
-
-
 public class engine
 {
    // initializes the quotelist and stores all the quotes from xml file into quoteList variable
@@ -30,8 +28,6 @@ public class engine
    
    
    public static void main(String[] args){
-      
-      
       // keeps track of user input, if user enters 'exit' the while loop below will stop
       String tracker = "a";
        
@@ -86,11 +82,9 @@ public class engine
                key = searcher.nextLine();
                String newQuote = key;
                
-               if(blkList.containsBadWord(newQuote)){
-                  
+               if(blkList.containsBadWord(newQuote))
                   System.out.println("Sorry, innappropriate language will not be added to our database!");
-                  
-               }
+               
                else{
                   
                     System.out.println("Enter the author.");
@@ -98,19 +92,13 @@ public class engine
                     String newAuthor = key;
                     
                     if(blkList.containsBadWord(newAuthor))
-                       System.out.println("Sorry, innappropriate language will not be added to our database!");
-        
+                        System.out.println("Sorry, innappropriate language will not be added to our database!");
                      else
-                          addQuote( newQuote , newAuthor );
-	       
+                        addQuote( newQuote , newAuthor );
                }
                break;
-
          }
-         
       }
-      
-     
    }
 
    /*
@@ -122,11 +110,8 @@ public class engine
     *
     */
    public static boolean checkForProfanity(String str){
-	
-	return true;
-
+      return true;
    }
-   
    
    /*
     * @author : Omar Zairi
@@ -176,9 +161,9 @@ public class engine
       catch(Exception e){
          System.out.println("Error with file.");
       }
-
    }
    
+   // Searches quote list by quote text
    public static void searchQuote( String keyword )
    {
       
@@ -196,6 +181,7 @@ public class engine
       }
    }
    
+   // Searches quote list by author name
    public static void searchAuthor( String keyword )
    {
       QuoteList results = quoteList.search( keyword , 0 );
@@ -209,6 +195,7 @@ public class engine
       }
    }
    
+   // Searchs quote list by author name and quote text
    public static void searchBoth( String keyword )
    {
       QuoteList results = quoteList.search( keyword , 2 );
@@ -222,6 +209,7 @@ public class engine
       }
    }
    
+   // Gets a random quote from quote list   
    public static void printRandomQuote()
    {
       quote = quoteList.getRandomQuote();

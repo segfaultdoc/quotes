@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.*;
 
-public class engine
+public class Engine
 {
    // initializes the quotelist and stores all the quotes from xml file into quoteList variable
    static QuoteList quoteList = new QuoteList();
@@ -217,5 +217,11 @@ public class engine
       System.out.println("\nRandom quote of the day:");
       System.out.println( "  "+quote.getQuoteText() );
       System.out.println( "  -"+quote.getAuthor() );
+   }
+   
+   // Adds keywords
+   public static Quote addKeywords()
+   {
+      return null;
    }
 } 

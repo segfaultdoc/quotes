@@ -1,0 +1,8 @@
+User Story:
+The user shall enter keywords for their quote with a 5 word limit
+
+
+Started by making a test case for a function called addKeywords(Arraylist keywordList)
+- the test case failed since the function had not been implemented yet
+
+

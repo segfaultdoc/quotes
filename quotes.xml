@@ -40,4 +40,8 @@
       <quote-text>What comes around goes around</quote-text>
       <author>Anonymous</author>
    </quote>
+   <quote>
+      <quote-text>bob</quote-text>
+      <author>john</author>
+   </quote>
 </quote-list>

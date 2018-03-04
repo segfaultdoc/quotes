@@ -7,14 +7,9 @@ import java.util.*;
 
 public class EngineTest {
   
-  Engine engine;
+  private Engine engine;
   
-  @Before
-  public void before()
-  {
-    engine = new Engine();
-  }
-  
+ 
   /*
    * 1st test case:
    * Function is meant to add the list of keywords.
@@ -22,11 +17,20 @@ public class EngineTest {
    * yet.
    */
   @Test
-  public void addKeywordsTest()
+  public void checkKeywordsTest1()
   {
-    assertNull( engine.addKeywords() );
+    assertNull( engine.checkKeywords(null) );
   }
   
+  /*
+   * 2nd test case:
+   * Added a parameter
+   */
+  @Test
+  public void checkKeywordsTest2()
+  {
+    assertEquals( "Oscar" , engine.checkKeywords("Oscar") );
+  }
   
   
 }

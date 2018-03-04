@@ -47,7 +47,8 @@ public class Engine
          System.out.println("Press 2 to search by a keyword in a quote.");
          System.out.println("Press 3 to search by an author.");
          System.out.println("Press 4 to search by both.");
-         System.out.println("Press 5 to add a quote.");
+         System.out.println("Press 5 to search by keywords.");
+         System.out.println("Press 6 to add a quote.");
          System.out.println("Enter 'exit' to quit the program.");
          
          String inn = in.nextLine();
@@ -77,7 +78,11 @@ public class Engine
                searchBoth( key );
                break;
             
-            case "5":
+            case 5:
+              // Search by keywords
+              break;
+            
+            case "6":
                System.out.println("Enter the quote.");
                key = searcher.nextLine();
                String newQuote = key;
@@ -94,7 +99,33 @@ public class Engine
                     if(blkList.containsBadWord(newAuthor))
                         System.out.println("Sorry, innappropriate language will not be added to our database!");
                      else
-                        addQuote( newQuote , newAuthor );
+                     {
+                      
+                        String keywordString = null;
+                        int stopper = 1;
+                        
+                        // if user doesnt enter word correctly
+                        // allow them to try 3 times
+                        // If they run out of tries then no keywords will be added
+                        while( stopper < 4 )
+                        {
+                          // Get keywords
+                          System.out.println("Enter keywords.");
+                          System.out.println("Seperate keyword or phrases with a comma");
+                          System.out.println("Example: eating, motivate me, fitness, study guide");
+                          
+                          key = searcher.nextLine();
+                        
+                          keywordString = checkKeywords(key);
+                          
+                          if(keywordString != null)
+                            break;
+                          
+                          stopper++;
+                        }
+                        
+                        addQuote( newQuote , newAuthor , keywordString );
+                     }
                }
                break;
          }
@@ -123,7 +154,7 @@ public class Engine
     * and adds it to the xml file
     * 
     */
-   public static void addQuote( String quote , String author )
+   public static void addQuote( String quote , String author , String keywords )
    {
       // create new quote
       Quote newQuote = new Quote(author,quote);
@@ -141,6 +172,8 @@ public class Engine
             if( !line.equals("</quote-list>") )
                pw.println(line);
          }
+         
+         
          
          // write new quote to file
          pw.println("   <quote>");
@@ -220,8 +253,8 @@ public class Engine
    }
    
    // Adds keywords
-   public static Quote addKeywords()
+   public static String checkKeywords(String keywords)
    {
-      return null;
+      return keywords;
    }
 } 

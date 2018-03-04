@@ -78,7 +78,7 @@ public class Engine
                searchBoth( key );
                break;
             
-            case 5:
+            case "5":
               // Search by keywords
               break;
             

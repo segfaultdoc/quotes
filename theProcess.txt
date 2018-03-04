@@ -3,7 +3,14 @@ The user shall enter keywords for their quote with a 5 word limit
 
 
 - Started by making a test case for a function called checkKeywords()
- 
+    TEST PASSED
+
+    public static String checkKeywords(String keywords)
+    {
+      return keywords;
+    }
+
+
     /*
     * 1st test case:
     * Function is meant to add the list of keywords.
@@ -20,3 +27,216 @@ The user shall enter keywords for their quote with a 5 word limit
 
 
 
+- Added a parameter, which will be the string of keywords entered
+    by the user. TEST PASSED
+
+
+    public static String checkKeywords(String keywords)
+    {
+      return keywords;
+    }
+
+
+    /*
+    * 2nd test case:
+    * Added a parameter
+    */
+    @Test
+    public void checkKeywordsTest2()
+    {
+    assertEquals( "Oscar" , engine.checkKeywords("Oscar") );
+    }
+
+
+
+
+
+- Splitting keywords if there is a comma in between words
+    
+    public static String checkKeywords(String keywords)
+    {
+      String[] words = keywords.split(",");
+
+
+      return ""+words.length;
+    }
+
+
+    /*
+    * 3rd test case:
+    * Check keyword size
+    */
+    @Test
+    public void checkKeywordSize()
+    {
+    assertEquals( "3" , engine.checkKeywords("bob,bill,will") );
+    }
+
+- Check if keyword is bigger than 25 characters
+    if so it should be removed
+
+    public static String checkKeywords(String keywords)
+    {
+      String[] wordsWithComma = keywords.split(",");
+
+      // Copy values to arraylist
+      ArrayList<String> words = new ArrayList<String>();
+
+      for(int i = 0; i < wordsWithComma.length ; i++)
+      {
+        if( wordsWithComma[i].length() <= 25)
+          words.add(wordsWithComma[i]);
+      }
+      
+      return ""+words.size();
+    }
+
+
+    @Test
+    public void checkKeywordSize()
+    {
+    assertEquals( "2" , engine.checkKeywords("bo234234234234235457456242342353544563424b,bill,will") );
+    }
+
+
+- check if blanks are not inserted
+    TEST FAILED
+
+    public static String checkKeywords(String keywords)
+    {
+      String[] wordsWithComma = keywords.split(",");
+
+      String xmlString = "      <keywords>";
+
+      for(int i = 0; i < wordsWithComma.length ; i++)
+      {
+
+        if( wordsWithComma[i].length() <= 25 && !wordsWithComma[i].isEmpty() )
+        {
+          String trimmer = wordsWithComma[i];
+          trimmer = trimmer.trim();
+
+          if(i == wordsWithComma.length-1)
+            xmlString += trimmer;
+          else
+            xmlString += trimmer+",";
+        }
+
+      }
+
+      xmlString += "</keywords>";
+
+      return xmlString;
+    }
+
+
+
+    // check if blanks are inserted
+    @Test
+    public void checkStringIsEmpty()
+    {
+    assertEquals("<keywords>bob</keywords>" , engine.checkKeywords("bob,     ").trim() );
+    }
+
+    RESULT:
+    1) checkStringIsEmpty(EngineTest)
+    org.junit.ComparisonFailure: expected:<<keywords>bob[]</keywords>> but was:<<keywords>bob[,]</keywords>>
+
+    Changes:
+    The wordsWithComma list size included the blanks, which caused a bug in the condition statement,
+    " if(i == wordsWithComma.length-1) ". To fix the problem I keep track the list size indendently, 
+    instead of depending on the orginiali wordsWithComma list, which included blanks. My new condition statement
+    is , "if(i == listSize - 1 )". ListSize is a variable that that stores the original list size but decrements
+    each time it comes across a blank keyword
+
+    Function after test passed:
+    public static String checkKeywords(String keywords)
+   {
+      String[] wordsWithComma = keywords.split(",");
+
+      String xmlString = "      <keywords>";
+
+      int listSize = wordsWithComma.length
+
+      for(int i = 0; i < listSize ; i++)
+      {
+        String trimmedWord = wordsWithComma[i];
+        trimmedWord = trimmedWord.trim();
+
+        // If word is blank, decrease list size by one
+        if( trimmedWord.equalsIgnoreCase("") )
+          listSize--;
+
+        if( trimmedWord.length() <= 25 && !trimmedWord.equalsIgnoreCase("") )
+        {
+          System.out.println("\n HERE: "+i+" --> "+wordsWithComma.length );
+          if(i == listSize - 1 )
+            xmlString += trimmedWord;
+          else
+            xmlString += trimmedWord+",";
+        }
+
+      }
+
+      xmlString += "</keywords>";
+
+      return xmlString;
+   }
+
+
+   
+
+
+
+- Check if leading and trailing spaces were removed from keywords
+    TEST PASSED
+
+    // check if words were trimmed
+    @Test
+    public void checkTrim()
+    {
+    assertEquals("bob" , engine.checkKeywords("  bob  ") );
+    }
+
+    // check if words were trimmed
+    @Test
+    public void checkTrim()
+    {
+    assertEquals("bob" , engine.checkKeywords("  bob  ") );
+    }
+
+
+
+
+- check if keyword were put into the xml form for processing
+
+
+
+    
+    // Adds keywords
+    public static String checkKeywords(String keywords)
+    {
+      String[] wordsWithComma = keywords.split(",");
+
+      String xmlString = "      <keywords>";
+
+      for(int i = 0; i < wordsWithComma.length ; i++)
+      {
+
+        if( wordsWithComma[i].length() <= 25)
+        {
+          String trimmer = wordsWithComma[i];
+          trimmer = trimmer.trim();
+
+          if(i == wordsWithComma.length-1)
+            xmlString += trimmer;
+          else
+            xmlString += trimmer+",";
+        }
+
+      }
+
+      xmlString += "</keywords>";
+
+      return xmlString;
+    }

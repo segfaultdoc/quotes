@@ -74,6 +74,7 @@ The user shall enter keywords for their quote with a 5 word limit
 
 - Check if keyword is bigger than 25 characters
     if so it should be removed
+    TEST PASSED
 
     public static String checkKeywords(String keywords)
     {
@@ -130,8 +131,6 @@ The user shall enter keywords for their quote with a 5 word limit
     }
 
 
-
-    // check if blanks are inserted
     @Test
     public void checkStringIsEmpty()
     {
@@ -144,44 +143,44 @@ The user shall enter keywords for their quote with a 5 word limit
 
     Changes:
     The wordsWithComma list size included the blanks, which caused a bug in the condition statement,
-    " if(i == wordsWithComma.length-1) ". To fix the problem I keep track the list size indendently, 
-    instead of depending on the orginiali wordsWithComma list, which included blanks. My new condition statement
-    is , "if(i == listSize - 1 )". ListSize is a variable that that stores the original list size but decrements
-    each time it comes across a blank keyword
+    " if(i == wordsWithComma.length-1) ". To fix the problem I made a new list that stores all the
+    keywords that pass the criteria, meaning it is less than 26 characters and is not a blank.
 
     Function after test passed:
     public static String checkKeywords(String keywords)
-   {
-      String[] wordsWithComma = keywords.split(",");
-
-      String xmlString = "      <keywords>";
-
-      int listSize = wordsWithComma.length
-
-      for(int i = 0; i < listSize ; i++)
-      {
-        String trimmedWord = wordsWithComma[i];
-        trimmedWord = trimmedWord.trim();
-
-        // If word is blank, decrease list size by one
-        if( trimmedWord.equalsIgnoreCase("") )
-          listSize--;
-
-        if( trimmedWord.length() <= 25 && !trimmedWord.equalsIgnoreCase("") )
-        {
-          System.out.println("\n HERE: "+i+" --> "+wordsWithComma.length );
-          if(i == listSize - 1 )
-            xmlString += trimmedWord;
-          else
-            xmlString += trimmedWord+",";
-        }
-
-      }
-
-      xmlString += "</keywords>";
-
-      return xmlString;
-   }
+    {
+       String[] wordsWithComma = keywords.split(",");
+       
+       ArrayList<String> keywordList = new ArrayList<String>();
+    
+       int listSize = wordsWithComma.length;
+    
+       for(int i = 0; i < listSize ; i++)
+       {
+         String trimmedWord = wordsWithComma[i];
+         trimmedWord = trimmedWord.trim();
+      
+         if( trimmedWord.length() <= 25 && !trimmedWord.equals("") )
+         {
+           keywordList.add(trimmedWord);
+         }
+    
+       }
+    
+       String xmlString = "      <keywords>";
+       
+       for(int i = 0; i < keywordList.size() ; i++)
+       {
+         if( i == keywordList.size()-1 )
+           xmlString += keywordList.get(i);
+         else
+           xmlString += keywordList.get(i)+",";
+       }
+       
+       xmlString += "</keywords>";
+    
+       return xmlString;
+    }
 
 
    
@@ -209,10 +208,8 @@ The user shall enter keywords for their quote with a 5 word limit
 
 
 - check if keyword were put into the xml form for processing
+    TEST PASSED
 
-
-
-    
     // Adds keywords
     public static String checkKeywords(String keywords)
     {
@@ -239,4 +236,11 @@ The user shall enter keywords for their quote with a 5 word limit
       xmlString += "</keywords>";
 
       return xmlString;
+    }
+
+
+    @Test
+    public void checkXMLform()
+    {
+      assertEquals( "<keywords>bob,bill,boy</keywords>" , engine.checkKeywords("bob,bill,boy  ").trim() );
     }

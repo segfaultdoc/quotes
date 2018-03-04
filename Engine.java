@@ -180,6 +180,7 @@ public class Engine
          pw.println("   <quote>");
          pw.println("      <quote-text>"+quote+"</quote-text>");
          pw.println("      <author>"+author+"</author>");
+         pw.println(keywords);
          pw.println("   </quote>");
          
          // close out the list
@@ -257,8 +258,8 @@ public class Engine
    public static String checkKeywords(String keywords)
    {
       String[] wordsWithComma = keywords.split(",");
-
-      String xmlString = "      <keywords>";
+      
+      ArrayList<String> keywordList = new ArrayList<String>();
 
       int listSize = wordsWithComma.length;
 
@@ -266,24 +267,24 @@ public class Engine
       {
         String trimmedWord = wordsWithComma[i];
         trimmedWord = trimmedWord.trim();
-        
-        // If word is blank, decrease list size by one
-        if( trimmedWord.equals("") )
-          listSize--;
-
-        System.out.println("List size ="+listSize);
-
+     
         if( trimmedWord.length() <= 25 && !trimmedWord.equals("") )
         {
-          System.out.println("\n HERE: "+i+" --> "+listSize );
-          if(i == listSize - 1)
-            xmlString += trimmedWord;
-          else
-            xmlString += trimmedWord+",";
+          keywordList.add(trimmedWord);
         }
 
       }
 
+      String xmlString = "      <keywords>";
+      
+      for(int i = 0; i < keywordList.size() ; i++)
+      {
+        if( i == keywordList.size()-1 )
+          xmlString += keywordList.get(i);
+        else
+          xmlString += keywordList.get(i)+",";
+      }
+      
       xmlString += "</keywords>";
 
       return xmlString;

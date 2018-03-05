@@ -109,15 +109,24 @@ public class EngineTest {
   public void getIdOfLastQuoteTest(){
     Engine en;// =// new Engine();
     //assertEquals(10, Engine.getIdOfLastQuote());
-    assertEquals("10",ql.getLastId());
+    assertEquals("13",ql.getLastId());
   }
   @Test
   public void searchKeywordsTest(){
-    QuoteList results = ql.search("health, fitness", 3);
+    // this test only checks to see if at least the first
+    // occurence of the keyword is returned with id 10
+    QuoteList results = ql.search("health", 3);
     assertEquals("10", results.getQuote(0).getId());
   }
 
-
+  @Test
+  public void searchKeywordsMultipleQuotesTest(){
+    // this test only checks to see if all quotes with
+    // the health keyword are returned
+    QuoteList results = ql.search("health", 3);
+    assertEquals("10", results.getQuote(0).getId());
+    assertEquals("12", results.getQuote(1).getId());
+  }
 
 
 

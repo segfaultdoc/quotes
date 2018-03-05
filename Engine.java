@@ -112,7 +112,7 @@ public class Engine
                           // Get keywords
                           System.out.println("Enter keywords.");
                           System.out.println("* Seperate keyword or phrases with a comma *");
-                          System.out.println("* Limit of 5 keywords and 25 characters *");
+                          System.out.println("* Limit of 5 keywords and 25 characters per each keyword *");
                           System.out.println("* Example: eating, motivate me, fitness, study guide *");
                           
                           key = searcher.nextLine();
@@ -263,7 +263,7 @@ public class Engine
 
       int listSize = wordsWithComma.length;
 
-      for(int i = 0; i < listSize ; i++)
+      for(int i = 0; i < listSize && i < 5 ; i++)
       {
         String trimmedWord = wordsWithComma[i];
         trimmedWord = trimmedWord.trim();
@@ -275,7 +275,7 @@ public class Engine
 
       }
 
-      String xmlString = "      <keywords>";
+      String xmlString = "<keywords>";
       
       for(int i = 0; i < keywordList.size() ; i++)
       {

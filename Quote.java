@@ -11,18 +11,20 @@ public class Quote
 {
    private String author;
    private String quoteText;
-   private String Keyword;
+   private String keyword;
+   private int id;
    // Default constructor does nothing
    public Quote ()
    {
    }
 
    // Constructor that assigns both strings
-   public Quote (String author, String quoteText, String keyword)
+   public Quote (String author, String quoteText, String keyword, int id)
    {
       this.author = author;
       this.quoteText = quoteText;
       this.keyword = keyword;
+      this.id = id;
    }
 
    // Getter and setter for author
@@ -44,7 +46,13 @@ public class Quote
    {
       this.quoteText = quoteText;
    }
-
+  
+   public void setKeyWord(String key){
+      this.keyword = key;
+   }
+   public String getKeyWord(){
+      return this.keyword;
+   }
    @Override
    public String toString ()
    {

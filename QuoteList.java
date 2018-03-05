@@ -73,6 +73,7 @@ public class QuoteList
             // System.out.println ("Matched Both ");
             returnQuote.setQuote (quote);
          }
+         
       }
       return returnQuote;
    }

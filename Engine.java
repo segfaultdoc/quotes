@@ -158,7 +158,7 @@ public class Engine
    public static void addQuote( String quote , String author , String keywords, String key )
    {
       // create new quote
-      Quote newQuote = new Quote(author,quote, key);
+      Quote newQuote = new Quote(author,quote, key, 0);
       // put new quote in current quote list
       quoteList.setQuote( newQuote );
       
@@ -215,7 +215,9 @@ public class Engine
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
    }
-   
+  public static String searchByKeyWord(String keywords){
+      return "";
+  }
    // Searches quote list by author name
    public static void searchAuthor( String keyword )
    {

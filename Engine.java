@@ -173,7 +173,7 @@ public class Engine
       // create new quote
 
       Quote newQuote = new Quote(author,quote,strToArray(key).toArray(new String[strToArray(key).size()]), Integer.toString(lastId));
-      lastId++;
+      
       // put new quote in current quote list
       quoteList.setQuote( newQuote );
       
@@ -193,6 +193,7 @@ public class Engine
          
          // write new quote to file
          pw.println("   <quote>");
+         pw.println("      <id>"+lastId+"</id>");
          pw.println("      <quote-text>"+quote+"</quote-text>");
          pw.println("      <author>"+author+"</author>");
          pw.println(keywords);
@@ -211,6 +212,8 @@ public class Engine
       catch(Exception e){
          System.out.println("Error with file.");
       }
+
+      lastId++;
    }
    
    // Searches quote list by quote text

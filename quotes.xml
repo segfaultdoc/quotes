@@ -57,8 +57,15 @@
       <keywords>fitness,health,life,school</keywords>
    </quote>
    <quote>
+      <id>11</id>
       <quote-text>at work</quote-text>
       <author>omar</author>
-<keywords>im fat,your fat,we're fat</keywords>
+      <keywords>im fat,your fat,we're fat</keywords>
+   </quote>
+   <quote>
+      <id>12</id>
+      <quote-text>im at school now</quote-text>
+      <author>oscar de la hoya</author>
+      <keywords>study,eat,study,sleep</keywords>
    </quote>
 </quote-list>

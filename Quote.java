@@ -11,27 +11,27 @@ public class Quote
 {
    private String author;
    private String quoteText;
-   private String keyword;
-   private int id;
+   private String [] keywords;
+   private String id;
    // Default constructor does nothing
    public Quote ()
    {
    }
 
    // Constructor that assigns both strings
-   public Quote (String author, String quoteText, String keyword, int id)
+   public Quote (String author, String quoteText, String [] keywords, String id)
    {
       this.author = author;
       this.quoteText = quoteText;
-      this.keyword = keyword;
+      this.keywords = keywords;
       this.id = id;
    }
 
-   public int getId(){
+   public String getId(){
       return this.id;
    }
 
-   public void setId(int id){
+   public void setId(String id){
       this.id = id;
    }
    // Getter and setter for author
@@ -54,15 +54,15 @@ public class Quote
       this.quoteText = quoteText;
    }
   
-   public void setKeyWord(String key){
-      this.keyword = key;
+   public void setKeywords(String [] keys){
+      this.keywords = keys;
    }
-   public String getKeyWord(){
-      return this.keyword;
+   public String [] getKeywords(){
+      return this.keywords;
    }
    @Override
    public String toString ()
    {
-      return "Quote {" + "author='" + author + '\'' + ", quoteText='" + quoteText + '\'' + '}';
+      return "Quote {" + "author='" + author + '\'' + ", ID='"+ this.id + '\'' + ", quoteText='" + quoteText + '\'' + '}';
    }
 }

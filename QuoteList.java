@@ -15,7 +15,7 @@ public class QuoteList
    /* package */ static final int SearchAuthorVal = 0;
    /* package */ static final int SearchTextVal   = 1;
    /* package */ static final int SearchBothVal   = 2;
-
+                 static final int SearchKeywordVal = 3;
    // For returning a random quote
    private Random randomGen;
    private final int seed = 19580427;
@@ -45,8 +45,8 @@ public class QuoteList
       return (Quote) quoteArray.get (i);
    }
     
-   public int getLastId(){
-      return quoteArray.get(quoteArray.size()).getId();
+   public String getLastId(){
+      return quoteArray.get(quoteArray.size()-1).getId();
 
    }
    /**
@@ -76,6 +76,26 @@ public class QuoteList
          {  // Found a matching author or quote, save it
             // System.out.println ("Matched Both ");
             returnQuote.setQuote (quote);
+         }
+         else if (mode == SearchKeywordVal)
+         {  // Found a matching author or quote, save it
+            // System.out.println ("Matched Both ");
+            String [] search =  Engine.strToArray(searchString).toArray(new String [Engine.strToArray(searchString).size()] );
+            String [] keywords =  quote.getKeywords();
+            if(keywords != null){
+            int loopCount = (keywords.length > search.length ? search.length : keywords.length); 
+            //int z = keywords.length;
+            //int k = search.length;
+            for(int k = 0; k< search.length; k++){
+            for(int j = 0; j < keywords.length; j++){
+              if(search[k].equals(keywords[j])){
+                  returnQuote.setQuote (quote);
+                  break;
+                }
+              }
+            }
+        }
+            
          }
          
       }

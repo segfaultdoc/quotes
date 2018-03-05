@@ -27,10 +27,18 @@ public class Engine
    static Quote quote = new Quote();
    
    
+   /*   static Scanner in = new Scanner(System.in);
+      static Scanner searcher = new Scanner(System.in);
+      static QuoteSaxParser qParser;
+     //public Engine(){
+    qParser = new QuoteSaxParser (quoteFileName);
+     quoteList = qParser.getQuoteList();
+    // }*/
+    static int lastId;
    public static void main(String[] args){
       // keeps track of user input, if user enters 'exit' the while loop below will stop
       String tracker = "a";
-       
+      lastId = Integer.parseInt(getIdOfLastQuote())+1; 
       // parses the xml file into the quotelist
       Scanner in = new Scanner(System.in);
       Scanner searcher = new Scanner(System.in);
@@ -153,7 +161,7 @@ public class Engine
     * file so that the next quote's id can be incremented
     * by one
     */
-    public int getIdOfLastQuote(){
+    public static String getIdOfLastQuote(){
       return quoteList.getLastId();
   
     }
@@ -171,7 +179,9 @@ public class Engine
    public static void addQuote( String quote , String author , String keywords, String key )
    {
       // create new quote
-      Quote newQuote = new Quote(author,quote, key, 0);
+
+      Quote newQuote = new Quote(author,quote,strToArray(key).toArray(new String[strToArray(key).size()]), Integer.toString(lastId));
+      lastId++;
       // put new quote in current quote list
       quoteList.setQuote( newQuote );
       
@@ -229,7 +239,7 @@ public class Engine
       }
    }
   public static QuoteList searchKeywords(String keywords){
-      QuoteList results = quoteList.search( "Nixon" , 2 );
+      QuoteList results = quoteList.search( keywords, 3 );
 
       return results;
   }
@@ -269,6 +279,34 @@ public class Engine
       System.out.println("\nRandom quote of the day:");
       System.out.println( "  "+quote.getQuoteText() );
       System.out.println( "  -"+quote.getAuthor() );
+   }
+
+   public static ArrayList<String> strToArray(String keywords){
+       
+  ArrayList<String> keywordList = new ArrayList<String>();
+
+
+      String[] wordsWithComma = keywords.split(",");
+     if(wordsWithComma != null){ 
+            int listSize = wordsWithComma.length;
+
+      for(int i = 0; i < listSize && i < 5 ; i++)
+      {
+        String trimmedWord = wordsWithComma[i];
+        trimmedWord = trimmedWord.trim();
+     
+        if( trimmedWord.length() <= 25 && !trimmedWord.equals("") )
+        {
+          keywordList.add(trimmedWord);
+        }
+
+      }   
+      return keywordList; 
+     }
+     else{
+        keywordList.add(keywords);
+        return keywordList;
+     }
    }
    
    // Adds keywords

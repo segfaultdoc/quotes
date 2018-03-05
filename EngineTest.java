@@ -4,6 +4,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;		
 import org.junit.runner.notification.Failure;
 import java.util.*;
+import java.io.*;
 
 public class EngineTest {
   
@@ -92,16 +93,28 @@ public class EngineTest {
   }
 
 */
+  QuoteList ql = new QuoteList();
+  Scanner in;
+  Scanner searcher;
+  QuoteSaxParser qParser;
 
+  
+  public EngineTest(){
+    
+    in = new Scanner(System.in);
+    qParser = new QuoteSaxParser("quotes.xml");
+    ql = qParser.getQuoteList(); 
+  }
   @Test
   public void getIdOfLastQuoteTest(){
-    Engine en = new Engine();
-    assertEquals(10, en.getIdOfLastQuote());  
+    Engine en;// =// new Engine();
+    //assertEquals(10, Engine.getIdOfLastQuote());
+    assertEquals("10",ql.getLastId());
   }
   @Test
   public void searchKeywordsTest(){
-    QuoteList results = Engine.searchKeywords("health");
-    assertEquals(10, results.getQuote(0).getId());
+    QuoteList results = ql.search("health, fitness", 3);
+    assertEquals("10", results.getQuote(0).getId());
   }
 
 

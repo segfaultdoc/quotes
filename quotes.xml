@@ -68,4 +68,22 @@
       <author>oscar de la hoya</author>
       <keywords>study,eat,study,sleep</keywords>
    </quote>
+   <quote>
+      <id>13</id>
+      <quote-text>We the people, are the people</quote-text>
+      <author>Albert Weinstein</author>
+      <keywords>smart,relativity,earth,education</keywords>
+   </quote>
+   <quote>
+      <id>14</id>
+      <quote-text>e = mc^2</quote-text>
+      <author>Albert Weinstein</author>
+      <keywords>relativity,physics,math</keywords>
+   </quote>
+   <quote>
+      <id>15</id>
+      <quote-text>I shoot better than Steph Curry</quote-text>
+      <author>Omar Zairi</author>
+      <keywords>basketball,truth,big baller brand</keywords>
+   </quote>
 </quote-list>

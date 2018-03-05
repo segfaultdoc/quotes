@@ -70,18 +70,21 @@ public class Engine
             
             case "2":
                System.out.println("Enter search query.");
+               System.out.print("-> ");
                key = searcher.nextLine();
                searchQuote( key );
                break;
             
             case "3":
                System.out.println("Enter search query.");
+               System.out.print("-> ");
                key = searcher.nextLine();
                searchAuthor( key );
                break;
             
             case "4":
                System.out.println("Enter search query.");
+               System.out.print("-> ");
                key = searcher.nextLine();
                searchBoth( key );
                break;
@@ -89,12 +92,14 @@ public class Engine
             case "5":
               // Search by keywords
               System.out.println("Enter search query.");
+              System.out.print("-> ");
              key = searcher.nextLine();
              searchKeywords( key );
              break;
             
             case "6":
                System.out.println("Enter the quote.");
+               System.out.print("-> ");
                key = searcher.nextLine();
                String newQuote = key;
                
@@ -104,6 +109,7 @@ public class Engine
                else{
                   
                     System.out.println("Enter the author.");
+                    System.out.print("-> ");
                     key = searcher.nextLine();
                     String newAuthor = key;
                     
@@ -119,7 +125,7 @@ public class Engine
                           System.out.println("* Seperate keyword or phrases with a comma *");
                           System.out.println("* Limit of 5 keywords and 25 characters per each keyword *");
                           System.out.println("* Example: eating, motivate me, fitness, study guide *");
-                          
+                          System.out.print("-> ");
                           key = searcher.nextLine();
                         
                           keywordString = checkKeywords(key);
@@ -329,17 +335,25 @@ public class Engine
     */
    public static String checkKeywords(String keywords)
    {
+      // Split keyword string by commas
       String[] wordsWithComma = keywords.split(",");
       
+      // List that will store final list of validated keywords
       ArrayList<String> keywordList = new ArrayList<String>();
 
+      // Amount of words separated by a comma
       int listSize = wordsWithComma.length;
 
+      // Validates each keyword in wordsWithComma l ist
       for(int i = 0; i < listSize && i < 5 ; i++)
       {
+
+        // Trims the white space from keyword
         String trimmedWord = wordsWithComma[i];
         trimmedWord = trimmedWord.trim();
      
+        // Checks to see that the keyword isn't blank and is less than
+        // 26 characters
         if( trimmedWord.length() <= 25 && !trimmedWord.equals("") )
         {
           keywordList.add(trimmedWord);
@@ -347,6 +361,7 @@ public class Engine
 
       }
 
+      // String to put keywords in XML form
       String xmlString = "      <keywords>";
       
       for(int i = 0; i < keywordList.size() ; i++)

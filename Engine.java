@@ -125,7 +125,7 @@ public class Engine
                           stopper++;
                         }
                         
-                        addQuote( newQuote , newAuthor , keywordString );
+                        addQuote( newQuote , newAuthor , keywordString, key );
                      }
                }
                break;
@@ -155,10 +155,10 @@ public class Engine
     * and adds it to the xml file
     * 
     */
-   public static void addQuote( String quote , String author , String keywords )
+   public static void addQuote( String quote , String author , String keywords, String key )
    {
       // create new quote
-      Quote newQuote = new Quote(author,quote);
+      Quote newQuote = new Quote(author,quote, key);
       // put new quote in current quote list
       quoteList.setQuote( newQuote );
       

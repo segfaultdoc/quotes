@@ -1,0 +1,9 @@
+1) For the new feature that adds keywords, the program will now ask the user to specify special keywords for their quote when they create the new quote.
+Each quote will have a maximum of 5 keywords, each keyword cannot have more than 25 characters, and each keyword must be separated with a comma.
+The user will be asked to entered keywords when they create a quote, so I added that step in our main() function in Engine.java.
+Once the user enters all the keywords, that string of keywords and commas are passed to the checkKeywords() function.
+The checkKeywords() function breaks the keywords into a String array and then each string is trimmed to remove leading and trailing spaces.
+Once the string is trimmed, it is checked to see if it is more than 25 characters or a blank string. 
+If it is within the 25 character range and not blank then it is added to an arraylist containing all the valid keywords.
+The loop that checks if it is a valid keyword will also stop at the 5th iteration if there are more than 5 keywords.
+Once the valid keyword list is built, it is then printed in between a string that contains the XML brackets "<keywords>" and "</keywords>",putting it in the final form needed to be inserted into the XML file.  

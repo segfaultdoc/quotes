@@ -110,13 +110,7 @@ public class Engine
                      {
                       
                         String keywordString = null;
-                        int stopper = 1;
                         
-                        // if user doesnt enter word correctly
-                        // allow them to try 3 times
-                        // If they run out of tries then no keywords will be added
-                        while( stopper < 4 )
-                        {
                           // Get keywords
                           System.out.println("Enter keywords.");
                           System.out.println("* Seperate keyword or phrases with a comma *");
@@ -127,11 +121,6 @@ public class Engine
                         
                           keywordString = checkKeywords(key);
                           
-                          if(keywordString != null)
-                            break;
-                          
-                          stopper++;
-                        }
                         
                         addQuote( newQuote , newAuthor , keywordString, key );
                      }
@@ -309,7 +298,21 @@ public class Engine
      }
    }
    
-   // Adds keywords
+   /*
+    * Author : Omar Zairi
+    *
+    * @param : String of keywords separated by commas
+    * @return : String of keywords separated by commas
+    *          in between XML <keywords> brackets
+    *
+    * Gets a string passed in that contains the user's keywords
+    * for their quote. Each keyword is split by a comma and then
+    * checked if it is a valid keyword. Once all keywords are 
+    * validated it is returned in a string in between the needed
+    * XML brackets.
+    *
+    * Example : <keywords>health,fitness,food</keywords>
+    */
    public static String checkKeywords(String keywords)
    {
       String[] wordsWithComma = keywords.split(",");

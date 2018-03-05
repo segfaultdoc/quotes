@@ -109,21 +109,53 @@ public class EngineTest {
   public void getIdOfLastQuoteTest(){
     Engine en;// =// new Engine();
     //assertEquals(10, Engine.getIdOfLastQuote());
-    assertEquals("10",ql.getLastId());
+    assertEquals("13",ql.getLastId());
   }
   @Test
   public void searchKeywordsTest(){
-    QuoteList results = ql.search("health, fitness", 3);
+    // this test only checks to see if at least the first
+    // occurence of the keyword is returned with id 10
+    QuoteList results = ql.search("health", 3);
     assertEquals("10", results.getQuote(0).getId());
   }
 
+  @Test
+  public void searchKeywordsMultipleQuotesTest(){
+    // this test only checks to see if all quotes with
+    // the health keyword are returned
+    QuoteList results = ql.search("health", 3);
+    assertEquals("10", results.getQuote(0).getId());
+    assertEquals("12", results.getQuote(1).getId());
+  }
+
+   @Test
+  public void searchDifferentKeywordsMultipleQuotesTest(){
+    // this test checks to see if all quotes with
+    // the "health" or "im fat" keywords are returned
+    QuoteList results = ql.search("health, im fat", 3);
+    assertEquals("10", results.getQuote(0).getId());
+    assertEquals("11", results.getQuote(1).getId());
+     assertEquals("12", results.getQuote(2).getId()); 
+  }
+
+  @Test
+  public void rightNumberOfQuotesTest(){
+    // this test only checks to see that only
+    // 2 quotes were returned, since there are
+    // only 2 quotes with this keyword
+    QuoteList results = ql.search("health", 3);
+    assertEquals(2, results.getSize());
+  }
 
 
-
-
-
-
-
+  @Test
+  public void rightNumberOfQuotesTest2(){
+    // this test only checks to see that only 
+    // 3 quotes were returned since only 
+    // 3 quotes have either of these keywords
+    QuoteList results = ql.search("health, im fat", 3);
+    assertEquals(3, results.getSize());
+  }
 
 
 

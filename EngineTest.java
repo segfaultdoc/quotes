@@ -128,7 +128,15 @@ public class EngineTest {
     assertEquals("12", results.getQuote(1).getId());
   }
 
-
+   @Test
+  public void searchDifferentKeywordsMultipleQuotesTest(){
+    // this test checks to see if all quotes with
+    // the "health" or "im fat" keywords are returned
+    QuoteList results = ql.search("health, im fat", 3);
+    assertEquals("10", results.getQuote(0).getId());
+    assertEquals("11", results.getQuote(1).getId());
+     assertEquals("12", results.getQuote(2).getId()); 
+  }
 
 
 

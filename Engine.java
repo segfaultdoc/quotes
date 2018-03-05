@@ -38,13 +38,13 @@ public class Engine
    public static void main(String[] args){
       // keeps track of user input, if user enters 'exit' the while loop below will stop
       String tracker = "a";
-      lastId = Integer.parseInt(getIdOfLastQuote())+1; 
+       
       // parses the xml file into the quotelist
       Scanner in = new Scanner(System.in);
       Scanner searcher = new Scanner(System.in);
       QuoteSaxParser qParser = new QuoteSaxParser (quoteFileName);
       quoteList = qParser.getQuoteList();
-      
+      lastId = Integer.parseInt(getIdOfLastQuote())+1;
       // loop runs until user enters 'exit'
       while( !tracker.equalsIgnoreCase("exit") ){
          

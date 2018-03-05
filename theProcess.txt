@@ -144,7 +144,9 @@ The user shall enter keywords for their quote with a 5 word limit
     Changes:
     The wordsWithComma list size included the blanks, which caused a bug in the condition statement,
     " if(i == wordsWithComma.length-1) ". To fix the problem I made a new list that stores all the
-    keywords that pass the criteria, meaning it is less than 26 characters and is not a blank.
+    keywords that pass the criteria, meaning it is less than 26 characters and is not a blank. Once the
+    the keyword is validated it is store into the list which then prints out the string that 
+    will be stored in the XML file.
 
     Function after test passed:
     public static String checkKeywords(String keywords)
@@ -183,6 +185,61 @@ The user shall enter keywords for their quote with a 5 word limit
     }
 
 
+
+- check if a maximum of 5 keywords were stored
+    TEST FAILED
+
+        public static String checkKeywords(String keywords)
+        {
+          String[] wordsWithComma = keywords.split(",");
+          
+          ArrayList<String> keywordList = new ArrayList<String>();
+
+          int listSize = wordsWithComma.length;
+
+          for(int i = 0; i < listSize ; i++)
+          {
+            String trimmedWord = wordsWithComma[i];
+            trimmedWord = trimmedWord.trim();
+         
+            if( trimmedWord.length() <= 25 && !trimmedWord.equals("") )
+            {
+              keywordList.add(trimmedWord);
+            }
+
+          }
+
+          String xmlString = "      <keywords>";
+          
+          for(int i = 0; i < keywordList.size() ; i++)
+          {
+            if( i == keywordList.size()-1 )
+              xmlString += keywordList.get(i);
+            else
+              xmlString += keywordList.get(i)+",";
+          }
+          
+          xmlString += "</keywords>";
+
+          return xmlString;
+        }
+
+
+    @Test
+    public void checkStringIsEmpty()
+    {
+    assertEquals("<keywords>1,2,3,4,5</keywords>" , engine.checkKeywords("1,2,3,4,5,6,7") );
+    }
+
+    There was 1 failure:
+    expected:<[<keywords>1,2,3,4,5]</keywords>> but was:<[      <keywords>1,2,3,4,5,6,7]</keywords>>
+
+    CHANGE:
+    To fix the bug I added a statement that will end the loop,
+    for(int i = 0; i < listSize ; i++),  if it reaches 5. Once I
+    changed the for loop to, for(int i = 0; i < listSize && i < 5 ; i++),
+    it correctly stored a max of 5 keywords.
+   
    
 
 

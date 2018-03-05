@@ -44,7 +44,11 @@ public class QuoteList
    {
       return (Quote) quoteArray.get (i);
    }
+    
+   public int getLastId(){
+      return quoteArray.get(quoteArray.size()).getId();
 
+   }
    /**
     * Search the quotes in the list, based on searchString
     * @param searchString String input for search

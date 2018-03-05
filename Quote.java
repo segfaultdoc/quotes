@@ -27,6 +27,13 @@ public class Quote
       this.id = id;
    }
 
+   public int getId(){
+      return this.id;
+   }
+
+   public void setId(int id){
+      this.id = id;
+   }
    // Getter and setter for author
    public String getAuthor ()
    {

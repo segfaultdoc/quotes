@@ -93,8 +93,16 @@ public class EngineTest {
 
 */
 
-
-
+  @Test
+  public void getIdOfLastQuoteTest(){
+    Engine en = new Engine();
+    assertEquals(10, en.getIdOfLastQuote());  
+  }
+  @Test
+  public void searchKeywordsTest(){
+    QuoteList results = Engine.searchKeywords("health");
+    assertEquals(10, results.getQuote(0).getId());
+  }
 
 
 

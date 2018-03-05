@@ -144,7 +144,20 @@ public class Engine
    public static boolean checkForProfanity(String str){
       return true;
    }
-   
+  
+   /* 
+    * @author : Zanyar Sherwani
+    * @return id of last quote in the xml file
+    *
+    * returns the id of the last quote in the xml
+    * file so that the next quote's id can be incremented
+    * by one
+    */
+    public int getIdOfLastQuote(){
+      return quoteList.getLastId();
+  
+    }
+
    /*
     * @author : Omar Zairi
     * @param text of the quote
@@ -215,8 +228,10 @@ public class Engine
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
    }
-  public static String searchByKeyWord(String keywords){
-      return "";
+  public static QuoteList searchKeywords(String keywords){
+      QuoteList results = quoteList.search( "Nixon" , 2 );
+
+      return results;
   }
    // Searches quote list by author name
    public static void searchAuthor( String keyword )

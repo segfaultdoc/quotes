@@ -138,9 +138,24 @@ public class EngineTest {
      assertEquals("12", results.getQuote(2).getId()); 
   }
 
+  @Test
+  public void rightNumberOfQuotesTest(){
+    // this test only checks to see that only
+    // 2 quotes were returned, since there are
+    // only 2 quotes with this keyword
+    QuoteList results = ql.search("health", 3);
+    assertEquals(2, results.getSize());
+  }
 
 
-
+  @Test
+  public void rightNumberOfQuotesTest2(){
+    // this test only checks to see that only 
+    // 3 quotes were returned since only 
+    // 3 quotes have either of these keywords
+    QuoteList results = ql.search("health, im fat", 3);
+    assertEquals(3, results.getSize());
+  }
 
 
 

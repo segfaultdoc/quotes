@@ -88,7 +88,10 @@ public class Engine
             
             case "5":
               // Search by keywords
-              break;
+              System.out.println("Enter search query.");
+             key = searcher.nextLine();
+             searchKeywords( key );
+             break;
             
             case "6":
                System.out.println("Enter the quote.");
@@ -227,10 +230,18 @@ public class Engine
          System.out.println( "  -"+quote1.getAuthor() + "\n" );
       }
    }
-  public static QuoteList searchKeywords(String keywords){
+  public static void searchKeywords(String keywords){
       QuoteList results = quoteList.search( keywords, 3 );
 
-      return results;
+      // output the results
+      System.out.println("Results ("+results.getSize()+"):");
+      
+      for ( int i = 0 ; i < results.getSize() ; i++ )
+      {
+         Quote quote1 = results.getQuote(i);
+         System.out.println( "  "+quote1.getQuoteText() );
+         System.out.println( "  -"+quote1.getAuthor() + "\n" );
+      }
   }
    // Searches quote list by author name
    public static void searchAuthor( String keyword )
